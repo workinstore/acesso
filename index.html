@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="green">
+<div class="bg-grid"></div>
+
+<header class="topbar">
+  <div class="brand"><span class="brand-dot"></span><span id="siteTitle">Portal</span></div>
+  <button id="themeBtn" class="theme-btn" title="Alternar tema" aria-label="Alternar tema">
+    <span class="theme-swatch"></span><span id="themeLabel">Verde</span>
+  </button>
+</header>
+
+<main>
+  <section class="hero">
+    <h1 id="heroTitle">Meus Serviços</h1>
+    <p id="heroSubtitle">Acesse rapidamente tudo em um só lugar.</p>
+  </section>
+  <section id="cards" class="cards"><div class="empty">Carregando...</div></section>
+</main>
+
+<footer class="footer"><span id="footerText">© Portal</span></footer>
+
+<!-- Ponto de acesso secreto -->
+<button id="secretDot" class="secret-dot" aria-label="."></button>
+
+<!-- Modal do card -->
+<div id="cardModal" class="modal">
+  <div class="modal-box card-detail">
+    <button class="close" data-close>&times;</button>
+    <img id="cmLogo" class="cm-logo" alt="">
+    <h2 id="cmTitle"></h2>
+    <p id="cmDesc"></p>
+    <button id="cmLink" class="btn primary" type="button">Acessar</button>
+  </div>
+</div>
+
+<!-- Modal de login -->
+<div id="loginModal" class="modal">
+  <div class="modal-box">
+    <button class="close" data-close>&times;</button>
+    <h2>Acesso restrito</h2>
+    <form id="loginForm">
+      <input id="loginEmail" type="email" placeholder="E-mail" required autocomplete="username">
+      <input id="loginPass" type="password" placeholder="Senha" required autocomplete="current-password">
+      <p id="loginError" class="error"></p>
+      <button class="btn primary" type="submit">Entrar</button>
+    </form>
+  </div>
+</div>
+
+<!-- Spinner -->
+<div id="spinner" class="spinner-overlay"><div class="spinner"></div></div>
+
+<!-- Painel admin -->
+<div id="adminPanel" class="admin">
+  <div class="admin-head">
+    <h2>Painel Administrativo</h2>
+    <div>
+      <button id="logoutBtn" class="btn ghost">Sair</button>
+      <button id="closeAdmin" class="btn ghost">Fechar</button>
+    </div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" data-tab="tabCards">Cards</button>
+    <button class="tab" data-tab="tabVisual">Visual</button>
+  </div>
+
+  <div id="tabCards" class="tab-content active">
+    <form id="cardForm" class="panel">
+      <h3 id="cardFormTitle">Novo card</h3>
+      <input type="hidden" id="cardId">
+      <input id="cardTitle" placeholder="Título" required>
+      <input id="cardLogo" placeholder="URL da logo (quadrada)">
+      <textarea id="cardDesc" placeholder="Descrição" rows="3"></textarea>
+      <input id="cardUrl" placeholder="Link de acesso (https://...)" required>
+      <input id="cardOrder" type="number" placeholder="Ordem (0, 1, 2...)">
+      <div class="row">
+        <button class="btn primary" type="submit">Salvar</button>
+        <button class="btn ghost" type="button" id="cardReset">Limpar</button>
+      </div>
+    </form>
+    <div id="adminList" class="admin-list"></div>
+  </div>
+
+  <div id="tabVisual" class="tab-content">
+    <form id="visualForm" class="panel">
+      <label>Nome do site<input id="vSiteTitle"></label>
+      <label>Título principal<input id="vHeroTitle"></label>
+      <label>Subtítulo<input id="vHeroSubtitle"></label>
+      <label>Rodapé<input id="vFooter"></label>
+      <label>Tema padrão
+        <select id="vTheme"><option value="green">Verde</option><option value="cyan">Ciano</option><option value="light">Claro</option></select>
+      </label>
+      <label>Cor de destaque personalizada (opcional)<input id="vAccent" type="color" value="#00ff88"></label>
+      <label class="check"><input id="vUseAccent" type="checkbox"> Usar cor personalizada</label>
+      <label>Tamanho dos cards (px)<input id="vCardSize" type="range" min="120" max="260" value="170"></label>
+      <label>Arredondamento (px)<input id="vRadius" type="range" min="0" max="32" value="18"></label>
+      <label class="check"><input id="vGrid" type="checkbox" checked> Mostrar grade de fundo</label>
+      <button class="btn primary" type="submit">Salvar visual</button>
+    </form>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script type="module" src="script.js"></script>
+</body>
+</html>
